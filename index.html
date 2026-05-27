@@ -32,7 +32,7 @@
       height: 68px; display: flex; align-items: center; justify-content: space-between;
       padding: 0 2.5rem;
       background: rgba(245,242,236,0.97); backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(184,150,90,0.15);
+      border-bottom: 1px solid rgba(184,150,90,0.2);
       transition: box-shadow 0.3s;
     }
     nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.07); }
@@ -90,11 +90,11 @@
     .hero-actions { display: flex; gap: 1.2rem; align-items: center; animation: fadeUp 1s 0.5s both; }
     .btn-primary {
       font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
-      font-family: var(--sans); background: #fff; color: var(--dark); border: none;
+      font-family: var(--sans); background: var(--cream); color: var(--dark); border: 1px solid var(--gold);
       padding: 0.9rem 2.2rem; cursor: pointer; text-decoration: none; display: inline-block;
-      transition: background 0.3s;
+      transition: all 0.3s;
     }
-    .btn-primary:hover { background: var(--cream2); }
+    .btn-primary:hover { background: var(--gold); color: var(--dark); }
     .btn-ghost-white {
       font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 300;
       background: none; border: 1px solid rgba(255,255,255,0.4); color: rgba(255,255,255,0.8);
@@ -105,7 +105,7 @@
 
 
     /* ── PROCESS ── */
-    .process { background: var(--dark); padding: 7rem 2.5rem; }
+    .process { background: var(--dark); padding: 7rem 2.5rem; border-top: 1px solid rgba(184,150,90,0.12); }
     .process-inner { max-width: 1100px; margin: 0 auto; }
     .section-tag { font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
     .section-tag::before { content: ''; width: 2rem; height: 1px; background: var(--gold); }
@@ -116,55 +116,54 @@
     .proc:hover { background: #1A1917; }
     .proc::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
     .proc:hover::after { transform: scaleX(1); }
-    .proc-num { font-family: var(--serif); font-size: 3rem; font-weight: 300; color: rgba(184,150,90,0.1); line-height: 1; margin-bottom: 1.25rem; }
+    .proc-num { font-family: var(--serif); font-size: 3rem; font-weight: 300; color: rgba(184,150,90,0.15); line-height: 1; margin-bottom: 1.25rem; }
     .proc-step { font-size: 0.52rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
     .proc-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: #fff; margin-bottom: 0.75rem; letter-spacing: 0.02em; }
     .proc-desc { font-size: 0.72rem; color: var(--muted); line-height: 1.8; font-weight: 300; }
 
     /* ── MISSION ── */
-    .mission { padding: 7rem 2.5rem; background: var(--cream2); border-top: 1px solid rgba(184,150,90,0.12); }
+    .mission { padding: 7rem 2.5rem; background: #111110; border-top: 1px solid rgba(184,150,90,0.12); }
     .mission-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
-    .mission-body p { font-size: 0.8rem; line-height: 1.95; color: var(--mid); margin-bottom: 1.1rem; font-weight: 300; }
+    .mission .section-h { color: #fff; }
+    .mission-body p { font-size: 0.8rem; line-height: 1.95; color: var(--light); margin-bottom: 1.1rem; font-weight: 300; }
     .mission-body p:last-child { margin-bottom: 0; }
-
-    /* ── PROJECTS ── */
-    .projects { padding: 7rem 2.5rem; background: var(--cream); border-top: 1px solid rgba(184,150,90,0.12); }
-    .projects-inner { max-width: 1100px; margin: 0 auto; }
-    .projects-coming { margin-top: 3rem; }
-    .coming-soon-box {
-      border: 1px solid rgba(184,150,90,0.25);
-      padding: 5rem 2rem;
-      text-align: center;
-      background: #fff;
-      max-width: 600px;
-      margin: 0 auto;
+    .mission-cta {
+      display: inline-block; margin-top: 2rem;
+      border: 1px solid var(--gold);
+      padding: 1.25rem 1.75rem;
+      text-decoration: none;
+      transition: all 0.3s;
+      background: var(--cream);
     }
-    .cs-diamond { margin-bottom: 1.5rem; display: flex; justify-content: center; }
-    .cs-label { font-family: var(--serif); font-size: 1.8rem; font-weight: 400; color: var(--dark); letter-spacing: 0.04em; margin-bottom: 1rem; }
-    .cs-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.85; font-weight: 300; max-width: 380px; margin: 0 auto; }
+    .mission-cta:hover { background: var(--gold); border-color: var(--gold); }
+    .mission-cta:hover .mission-cta-title { color: var(--dark); }
+    .mission-cta:hover .mission-cta-sub { color: var(--dark); }
+    .mission-cta-title { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; color: var(--dark); transition: color 0.3s; }
+    .mission-cta-sub { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-top: 0.3rem; font-weight: 400; transition: color 0.3s; }
+
 
     /* ── CTA BAND ── */
-    .cta-band { padding: 7rem 2.5rem; text-align: center; background: var(--cream2); border-top: 1px solid rgba(184,150,90,0.15); }
+    .cta-band { padding: 7rem 2.5rem; text-align: center; background: var(--cream); border-top: 1px solid rgba(184,150,90,0.2); }
     .cta-band-inner { max-width: 640px; margin: 0 auto; }
     .cta-eyebrow { font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 1.5rem; }
     .cta-eyebrow::before, .cta-eyebrow::after { content: ''; width: 2rem; height: 1px; background: var(--gold); }
-    .cta-band h2 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.25rem; letter-spacing: 0.02em; }
+    .cta-band h2 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.25rem; letter-spacing: 0.02em; color: var(--dark); }
     .cta-band p { font-size: 0.78rem; color: var(--mid); line-height: 1.85; margin-bottom: 2.5rem; font-weight: 300; }
     .btn-dark {
       font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
-      font-family: var(--sans); background: var(--dark); color: var(--cream); border: none;
+      font-family: var(--sans); background: var(--dark); color: var(--cream); border: 1px solid var(--dark);
       padding: 0.9rem 2.5rem; cursor: pointer; text-decoration: none; display: inline-block;
-      transition: background 0.3s;
+      transition: all 0.3s;
     }
-    .btn-dark:hover { background: #333; }
+    .btn-dark:hover { background: var(--gold); border-color: var(--gold); color: var(--dark); }
 
     /* ── FOOTER ── */
-    footer { background: var(--dark); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(184,150,90,0.1); }
-    .footer-logo-top { font-family: var(--sans); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #fff; }
+    footer { background: var(--cream); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(184,150,90,0.2); }
+    .footer-logo-top { font-family: var(--sans); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dark); }
     .footer-logo-sub { font-size: 0.48rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-top: 0.2rem; }
-    .footer-mid { font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); text-align: center; }
-    .footer-right a { font-size: 0.52rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); text-decoration: none; margin-left: 1.5rem; transition: color 0.2s; }
-    .footer-right a:hover { color: rgba(255,255,255,0.6); }
+    .footer-mid { font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-align: center; }
+    .footer-right a { font-size: 0.52rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; margin-left: 1.5rem; transition: color 0.2s; }
+    .footer-right a:hover { color: var(--dark); }
 
     /* ── REVEAL ── */
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.9s, transform 0.9s; }
@@ -205,7 +204,6 @@
       <a href="#home">Home</a>
       <a href="#process">Our Process</a>
       <a href="#mission">Our Mission</a>
-      <a href="#projects">Our Projects</a>
     </div>
     <a href="intake.html" class="nav-cta">Start a Project</a>
   </div>
@@ -218,7 +216,6 @@
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Custom Home Gym &amp; Wellness Design</div>
     <h1>Your Space.<br>Designed to<br>Perform.</h1>
     <p class="hero-sub">Custom home gym and wellness spaces, designed and customized for your training, recovery and lifestyle.</p>
     <div class="hero-actions">
@@ -232,8 +229,8 @@
 <section class="process" id="process">
   <div class="process-inner">
     <div class="reveal">
-      <div class="section-tag">How It Works</div>
-      <h2 class="section-h">Our Process</h2>
+      <div class="section-tag">Our Process</div>
+      <h2 class="section-h">How It Works</h2>
     </div>
     <div class="process-steps">
       <div class="proc reveal">
@@ -272,32 +269,12 @@
       <h2 class="section-h">Intentional Spaces.<br>Built for Real Life.</h2>
     </div>
     <div class="mission-body reveal reveal-d1">
-      <p>Form &amp; Function Design Co. was built on a simple belief — that the space where you train, recover, and take care of yourself should be as intentional as the work you put in.</p>
-      <p>We design and build custom home gym and wellness environments that integrate seamlessly into your home and your life. Every detail considered. Every square foot purposeful. Every space uniquely yours.</p>
-      <p>Based in Nashville, we work with clients who are serious about their health, their home, and the standard they hold themselves to.</p>
+      <p>Form &amp; Function Design Co. is built on a simple belief — that the space where you train and recover should function as intentionally as you.</p>
+      <p>We design and build custom home gym and wellness spaces that integrate seamlessly into your blueprint. Every detail considered. Every square foot purposeful. A custom space, uniquely yours.</p>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section class="projects" id="projects">
-  <div class="projects-inner">
-    <div class="reveal">
-      <div class="section-tag">Our Projects</div>
-    </div>
-    <div class="projects-coming reveal reveal-d1">
-      <div class="coming-soon-box">
-        <div class="cs-diamond">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="3" width="42" height="42" transform="rotate(45 24 24)" stroke="#B8965A" stroke-width="1"/>
-            <rect x="8" y="8" width="32" height="32" transform="rotate(45 24 24)" stroke="#B8965A" stroke-width="0.4" opacity="0.4"/>
-          </svg>
-        </div>
-        <div class="cs-label">Coming Soon</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- CTA -->
 <section class="cta-band">
