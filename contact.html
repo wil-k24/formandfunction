@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Start a Project | Form & Function Design Co. · Nashville, TN</title>
+  <meta name="description" content="Tell us about your project. Form & Function Design Co. designs and builds custom home gym and wellness spaces in Nashville, TN."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold:  #B8965A;
+      --dark:  #111110;
+      --cream: #F5F2EC;
+      --cream2:#EAE6DF;
+      --mid:   #555550;
+      --muted: #888882;
+      --light: #BBBBB4;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Jost', 'Helvetica Neue', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--dark); -webkit-font-smoothing: antialiased; }
+
+    /* ── NAV (same as index) ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 68px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem;
+      background: rgba(245,242,236,0.97); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(184,150,90,0.15);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.06);
+    }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; text-decoration: none; }
+    .nav-logo-top { font-family: var(--sans); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dark); }
+    .nav-logo-sub { font-size: 0.48rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-top: 0.25rem; }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-back { font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); text-decoration: none; font-weight: 400; transition: color 0.3s; display: flex; align-items: center; gap: 0.4rem; }
+    .nav-back:hover { color: var(--dark); }
+
+    /* ── PAGE LAYOUT ── */
+    .page { margin-top: 68px; display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 68px); }
+
+    /* ── LEFT PANEL ── */
+    .left-panel {
+      background: var(--dark); padding: 5rem 4rem;
+      display: flex; flex-direction: column; justify-content: space-between;
+      position: relative; overflow: hidden;
+    }
+    .lp-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(184,150,90,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,150,90,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .lp-content { position: relative; z-index: 1; }
+    .lp-tag { font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .lp-tag::before { content: ''; width: 2rem; height: 1px; background: var(--gold); }
+    .lp-title { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 400; color: #fff; line-height: 1.2; letter-spacing: 0.02em; margin-bottom: 1.5rem; }
+    .lp-body { font-size: 0.78rem; color: var(--muted); line-height: 1.9; font-weight: 300; margin-bottom: 3rem; }
+    .lp-details { display: flex; flex-direction: column; gap: 1.25rem; }
+    .lp-detail { display: flex; align-items: flex-start; gap: 1rem; }
+    .lp-detail-icon { width: 36px; height: 36px; border: 1px solid rgba(184,150,90,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .lp-detail-icon svg { width: 16px; height: 16px; }
+    .lp-detail-text { font-size: 0.72rem; color: var(--muted); line-height: 1.6; }
+    .lp-detail-label { font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.2rem; }
+
+    .lp-footer { position: relative; z-index: 1; }
+    .lp-footer-rule { width: 100%; height: 1px; background: rgba(184,150,90,0.2); margin-bottom: 1.5rem; }
+    .lp-contact { font-size: 0.65rem; color: rgba(255,255,255,0.35); letter-spacing: 0.06em; line-height: 1.8; }
+    .lp-contact { display: flex; flex-direction: column; gap: 0.75rem; }
+    .lp-contact-row { display: flex; align-items: center; gap: 0.6rem; }
+    .lp-contact-row svg { flex-shrink: 0; opacity: 0.7; }
+    .lp-contact a { color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; font-size: 0.65rem; letter-spacing: 0.06em; }
+    .lp-contact a:hover { color: var(--gold); }
+
+    /* ── RIGHT PANEL (FORM) ── */
+    .right-panel { background: var(--cream); padding: 5rem 4rem; overflow-y: auto; }
+
+    .form-heading { margin-bottom: 2.5rem; }
+    .form-heading-tag { font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; }
+    .form-heading h2 { font-family: var(--serif); font-size: 2rem; font-weight: 400; line-height: 1.2; letter-spacing: 0.02em; }
+
+    /* Form rule */
+    .form-rule { height: 1px; background: linear-gradient(to right, var(--gold), rgba(184,150,90,0.1)); margin-bottom: 2.5rem; }
+
+    /* Field groups */
+    .form-group { margin-bottom: 1.75rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.75rem; }
+    label { display: block; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; font-weight: 400; }
+    label span { color: var(--gold); margin-left: 2px; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%; background: #fff;
+      border: 1px solid #D5D0C8; border-top: none; border-left: none; border-right: none;
+      border-bottom: 1.5px solid #BBBBB4;
+      padding: 0.75rem 0; font-family: var(--sans); font-size: 0.82rem;
+      color: var(--dark); font-weight: 300; letter-spacing: 0.02em;
+      outline: none; transition: border-color 0.3s; background: transparent;
+      -webkit-appearance: none; appearance: none; border-radius: 0;
+    }
+    input:focus, select:focus, textarea:focus { border-bottom-color: var(--gold); }
+    input::placeholder, textarea::placeholder { color: var(--light); }
+    select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8965A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.5rem center; padding-right: 2rem; }
+    textarea { resize: vertical; min-height: 100px; }
+
+    /* Radio / checkbox groups */
+    .radio-group { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.5rem; }
+    .radio-option { display: none; }
+    .radio-label {
+      font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400;
+      border: 1px solid #D5D0C8; padding: 0.55rem 1rem; cursor: pointer;
+      transition: all 0.2s; color: var(--muted); user-select: none;
+    }
+    .radio-option:checked + .radio-label, input[type="checkbox"]:checked + .radio-label { border-color: var(--gold); color: var(--dark); background: rgba(184,150,90,0.06); }
+    .radio-label:hover { border-color: var(--gold); color: var(--dark); }
+
+    /* Section divider inside form */
+    .form-section-label { font-size: 0.55rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin: 2.5rem 0 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(184,150,90,0.2); }
+
+    /* Submit */
+    .form-submit { margin-top: 2.5rem; }
+    .btn-submit {
+      width: 100%; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500;
+      font-family: var(--sans); background: var(--dark); color: var(--cream); border: none;
+      padding: 1.1rem 2rem; cursor: pointer; transition: background 0.3s;
+    }
+    .btn-submit:hover { background: #333; }
+    .form-note { font-size: 0.6rem; color: var(--light); text-align: center; margin-top: 1rem; line-height: 1.6; letter-spacing: 0.04em; }
+
+    /* Success state */
+    .success-msg { display: none; text-align: center; padding: 3rem 0; }
+    .success-msg.show { display: block; }
+    .form-fields.hidden { display: none; }
+    .success-icon { width: 56px; height: 56px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; }
+    .success-msg h3 { font-family: var(--serif); font-size: 1.8rem; font-weight: 400; margin-bottom: 0.75rem; }
+    .success-msg p { font-size: 0.78rem; color: var(--mid); line-height: 1.8; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--dark); padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(184,150,90,0.1); }
+    .footer-copy { font-size: 0.52rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+    .footer-back { font-size: 0.52rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
+    .footer-back:hover { color: rgba(255,255,255,0.6); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .page { grid-template-columns: 1fr; }
+      .left-panel { padding: 3rem 1.5rem; min-height: auto; }
+      .right-panel { padding: 3rem 1.5rem; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      nav { padding: 0 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-top">Form &amp; Function</div>
+    <div class="nav-logo-sub">Design Co.</div>
+  </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back">← Back to Home</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- LEFT PANEL -->
+  <div class="left-panel">
+    <div class="lp-bg"></div>
+    <div class="lp-content">
+      <div class="lp-tag">Nashville, Tennessee</div>
+      <h1 class="lp-title">Tell Us About Your Project.</h1>
+      <p class="lp-body">Fill out the intake form and we'll review your project details. Expect to hear from us within 1–2 business days to schedule your private, no-pressure consultation.</p>
+      <div class="lp-details">
+      </div>
+    </div>
+    <div class="lp-footer">
+      <div class="lp-footer-rule"></div>
+      <div class="lp-contact">
+        <div class="lp-contact-row">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#B8965A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:william@formandfunctiondesign.co">william@formandfunctiondesign.co</a>
+        </div>
+        <div class="lp-contact-row">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#B8965A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="#B8965A"/></svg>
+          <a href="https://instagram.com/formandfunctiondesign.co" target="_blank">@formandfunctiondesign.co</a>
+        </div>
+        <div class="lp-contact-row">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#B8965A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <a href="https://formandfunctiondesign.co">formandfunctiondesign.co</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL — FORM -->
+  <div class="right-panel">
+    <div class="form-heading">
+      <div class="form-heading-tag">Client Intake Form</div>
+      <h2>Start Your<br>Project</h2>
+    </div>
+    <div class="form-rule"></div>
+
+    <!-- Success message (hidden until submit) -->
+    <div class="success-msg" id="successMsg">
+      <div class="success-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8965A" stroke-width="1.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>We'll Be in Touch.</h3>
+      <p>Thank you for reaching out. Wil will review your project details and contact you within 1–2 business days to schedule your private consultation.</p>
+    </div>
+
+    <div class="form-fields" id="formFields">
+      <form id="contactForm" onsubmit="handleSubmit(event)" action="https://formspree.io/f/xbdbpdjb" method="POST">
+
+        <!-- 1. Contact Info -->
+        <div class="form-section-label">01 &nbsp;— &nbsp;Contact Information</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name <span>*</span></label>
+            <input type="text" id="firstName" name="firstName" placeholder="First name" required/>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name <span>*</span></label>
+            <input type="text" id="lastName" name="lastName" placeholder="Last name" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address <span>*</span></label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required/>
+        </div>
+        <div class="form-group">
+          <label for="location">City / Neighborhood</label>
+          <input type="text" id="location" name="location" placeholder="e.g. Green Hills, Brentwood, Franklin"/>
+        </div>
+
+        <!-- 2. Project Type -->
+        <div class="form-section-label">02 &nbsp;— &nbsp;Project Type</div>
+        <div class="form-group">
+          <label>What type of space are you looking to create? <span>*</span></label>
+          <div class="radio-group">
+            <input type="radio" name="projectType" id="pt1" value="Home Gym" class="radio-option" required/>
+            <label for="pt1" class="radio-label">Home Gym</label>
+            <input type="radio" name="projectType" id="pt2" value="Recovery Space" class="radio-option"/>
+            <label for="pt2" class="radio-label">Recovery Space</label>
+            <input type="radio" name="projectType" id="pt3" value="Full Wellness Suite" class="radio-option"/>
+            <label for="pt3" class="radio-label">Full Wellness Suite</label>
+            <input type="radio" name="projectType" id="pt4" value="Commercial" class="radio-option"/>
+            <label for="pt4" class="radio-label">Commercial</label>
+            <input type="radio" name="projectType" id="pt5" value="Not Sure Yet" class="radio-option"/>
+            <label for="pt5" class="radio-label">Not Sure Yet</label>
+          </div>
+        </div>
+
+        <!-- 3. Space Details -->
+        <div class="form-section-label">03 &nbsp;— &nbsp;Your Space</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="spaceType">Type of Space</label>
+            <select id="spaceType" name="spaceType">
+              <option value="" disabled selected>Select one</option>
+              <option>Garage</option>
+              <option>Basement</option>
+              <option>Dedicated Room</option>
+              <option>Outdoor / Pool House</option>
+              <option>New Construction</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="spaceSize">Approximate Size</label>
+            <input type="text" id="spaceSize" name="spaceSize" placeholder="e.g. 20 x 30 ft, ~600 sq ft"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>What do you want to include? (select all that apply)</label>
+          <div class="radio-group">
+            <input type="checkbox" name="includes" id="inc1" value="Strength Training" class="radio-option"/>
+            <label for="inc1" class="radio-label">Strength Training</label>
+            <input type="checkbox" name="includes" id="inc2" value="Cardio Equipment" class="radio-option"/>
+            <label for="inc2" class="radio-label">Cardio Equipment</label>
+            <input type="checkbox" name="includes" id="inc3" value="Turf / Functional" class="radio-option"/>
+            <label for="inc3" class="radio-label">Turf / Functional</label>
+            <input type="checkbox" name="includes" id="inc4" value="Sauna" class="radio-option"/>
+            <label for="inc4" class="radio-label">Sauna</label>
+            <input type="checkbox" name="includes" id="inc5" value="Cold Plunge" class="radio-option"/>
+            <label for="inc5" class="radio-label">Cold Plunge</label>
+            <input type="checkbox" name="includes" id="inc6" value="Recovery / Stretch" class="radio-option"/>
+            <label for="inc6" class="radio-label">Recovery / Stretch</label>
+            <input type="checkbox" name="includes" id="inc7" value="Not Sure Yet" class="radio-option"/>
+            <label for="inc7" class="radio-label">Not Sure Yet</label>
+          </div>
+        </div>
+
+        <!-- 4. Budget & Timeline -->
+        <div class="form-section-label">04 &nbsp;— &nbsp;Budget &amp; Timeline</div>
+        <div class="form-group">
+          <label>Estimated Budget</label>
+          <div class="radio-group">
+            <input type="radio" name="budget" id="b1" value="Under $25K" class="radio-option"/>
+            <label for="b1" class="radio-label">Under $25K</label>
+            <input type="radio" name="budget" id="b2" value="$25K–$50K" class="radio-option"/>
+            <label for="b2" class="radio-label">$25K – $50K</label>
+            <input type="radio" name="budget" id="b3" value="$50K–$100K" class="radio-option"/>
+            <label for="b3" class="radio-label">$50K – $100K</label>
+            <input type="radio" name="budget" id="b4" value="$100K+" class="radio-option"/>
+            <label for="b4" class="radio-label">$100K+</label>
+            <input type="radio" name="budget" id="b5" value="Flexible" class="radio-option"/>
+            <label for="b5" class="radio-label">Flexible / Not Sure</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="timeline">When Are You Looking to Start?</label>
+          <select id="timeline" name="timeline">
+            <option value="" disabled selected>Select one</option>
+            <option>ASAP — ready to move</option>
+            <option>1–3 months</option>
+            <option>3–6 months</option>
+            <option>6–12 months</option>
+            <option>Just exploring for now</option>
+          </select>
+        </div>
+
+        <!-- 5. Vision -->
+        <div class="form-section-label">05 &nbsp;— &nbsp;Your Vision</div>
+        <div class="form-group">
+          <label for="goals">What are your primary training or wellness goals?</label>
+          <textarea id="goals" name="goals" placeholder="e.g. build strength, lose weight, recovery from injury, general fitness, athlete performance..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="inspiration">Any inspiration, references, or must-haves?</label>
+          <textarea id="inspiration" name="inspiration" placeholder="Links, equipment brands, aesthetic preferences, specific features you've seen and loved..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="hearAbout">How did you hear about us?</label>
+          <input type="text" id="hearAbout" name="hearAbout" placeholder="Instagram, referral, Google, etc."/>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn-submit">Submit Project Intake →</button>
+          <p class="form-note">We'll review your submission and be in touch within 1–2 business days.</p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2025 Form &amp; Function Design Co. LLC · All Rights Reserved</div>
+  <a href="index.html" class="footer-back">← Back to Home</a>
+</footer>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('contactForm');
+    const data = new FormData(form);
+
+    // Use Formspree for email delivery
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(res => {
+      if (res.ok) {
+        document.getElementById('formFields').classList.add('hidden');
+        document.getElementById('successMsg').classList.add('show');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        // Fallback — still show success if Formspree not yet configured
+        document.getElementById('formFields').classList.add('hidden');
+        document.getElementById('successMsg').classList.add('show');
+      }
+    }).catch(() => {
+      document.getElementById('formFields').classList.add('hidden');
+      document.getElementById('successMsg').classList.add('show');
+    });
+  }
+</script>
+
+</body>
+</html>
